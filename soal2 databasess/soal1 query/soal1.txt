@@ -1,0 +1,27 @@
+1-1 SELECT
+  productLine,
+  COUNT( orderNumber ) 
+FROM
+  orderdetails
+  INNER JOIN products ON products.productCode = orderdetails.productCode 
+GROUP BY
+  productLine
+  
+  
+1-2  SELECT COUNT(customerName),country ,orderDate
+  FROM customers
+  INNER JOIN orders ON orders.customerNumber = customers.customerNumber
+  GROUP BY country,YEAR(orderDate);
+
+1-3  SELECT contactFirstName,contactLastName,jobTitle
+  FROM customers
+  INNER JOIN employees ON employees.firstName = customers.contactFirstName
+  WHERE jobTitle="Sales Rep"
+
+
+1-4  SELECT contactFirstName,phone,city,productLine
+  FROM customers
+  INNER JOIN orders ON customers.customerNumber = orders.customerNumber
+  INNER JOIN orderdetails ON orders.orderNumber = orderdetails.orderNumber
+  INNER JOIN products ON products.productCode = orderdetails.productCode
+  WHERE productLine="Motorcycles"
